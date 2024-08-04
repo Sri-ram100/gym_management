@@ -1,0 +1,14 @@
+{% extends "base.html" %} 
+
+{% block content %}
+<div style="font-family: Arial, sans-serif; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; height: 60vh;">
+  <div style="background-color: #fff; padding: 10px 40px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border-radius: 8px; text-align: center;">
+    <h1 style="color: #333; margin-bottom: 20px;">Mark Attendance</h1>
+    <form method="post" style="display: flex; flex-direction: column; gap: 15px;">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" style="background-color: green; color: #fff; border: none; padding: 10px; border-radius: 4px; cursor: pointer; transition: background-color 0.3s ease;">Mark Attendance</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

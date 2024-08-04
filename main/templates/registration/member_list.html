@@ -1,0 +1,102 @@
+{% extends "base.html" %} {% block content %}
+<style>
+  .white-text {
+    color: white;
+  }
+  .half-opacity-bg {
+    background-color:black; /* green background with 50% opacity */
+  }
+</style>
+<div class="container white-text half-opacity-bg">
+  <div class="row justify-content-center">
+    <div class="col-12 mt-5 text-center mb-3">
+      <button
+        type="button"
+        class="btn btn-success white-text"
+        onclick="window.location.href = '/register/'"
+      >
+        Register New Member
+      </button>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <h2 class="white-text">Members List</h2>
+      <table class="table table-striped white-text half-opacity-bg">
+        <thead class="white-text">
+          <tr class="white-text">
+            <th scope="col" class="white-text">Name</th>
+            <th scope="col" class="white-text">Age</th>
+            <th scope="col" class="white-text">Sex</th>
+            <th scope="col" class="white-text">Email</th>
+            <th scope="col" class="white-text">Mobile</th>
+            <th scope="col" class="white-text">Address</th>
+            <th scope="col" class="white-text">Joined date</th>
+            <th class="text-nowrap white-text">Login Access</th>
+            <th scope="col" class="white-text">Edit</th>
+            <th scope="col" class="white-text">Delete</th>
+          </tr>
+        </thead>
+        <tbody class="white-text">
+          {% for member in members %}
+          <tr class="white-text half-opacity-bg">
+            <td class="text-nowrap white-text">
+              {{member.first_name}} {{member.last_name}}
+            </td>
+            <td class="white-text">{{member.age}}</td>
+            <td class="white-text">{{member.sex}}</td>
+            <td class="white-text">{{member.email}}</td>
+            <td class="white-text">{{member.mobile_number}}</td>
+            <td class="white-text">{{member.address}}</td>
+            <td class="text-nowrap white-text">{{member.join_date}}</td>
+            <td class="text-nowrap white-text">
+              <a href="{% url 'approve_member' member.id %}">
+                <button {% if member.user.is_active %}disabled{% endif %} class="white-text half-opacity-bg">
+                  {% if member.user.is_active %} Approved {% else %} Approve {% endif %}
+                </button>
+              </a>
+              <a href="{% url 'disapprove_member' member.id %}">
+                <button {% if not member.user.is_active %}disabled{% endif %} class="white-text half-opacity-bg">
+                  {% if member.user.is_active %} Disapprove {% else %} Disapproved {% endif %}
+                </button>
+              </a>
+            </td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-primary white-text half-opacity-bg"
+                onclick="fn_ConfirmEdit('/edit_member/{{member.id}}')"
+              >
+                Edit
+              </button>
+            </td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-danger white-text half-opacity-bg"
+                onclick="fn_ConfirmDelete('/delete_member/{{member.id}}')"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script>
+  function fn_ConfirmDelete(url) {
+    if (confirm("Do you want to delete member?")) {
+      window.location.href = url;
+    }
+  }
+  function fn_ConfirmEdit(url) {
+    if (confirm("Do you want to edit member?")) {
+      window.location.href = url;
+    }
+  }
+</script>
+
+{% endblock %}

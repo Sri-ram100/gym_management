@@ -1,0 +1,15 @@
+{% extends "base.html" %} 
+
+{% block content %}
+<div style="font-family: Arial, sans-serif; padding: 20px; display: flex; justify-content: center;">
+  <div style="background-color:black;padding: 20px 40px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border-radius: 8px; max-width: 600px; width: 100%;">
+    <h1 style="color: #333; margin-bottom: 20px; text-align: center;color: white;">Attendance Stats</h1>
+    <p style="font-size: 18px; color: #555; text-align: center;color: white;">Total Attendance - <strong>{{ records.count }}</strong></p>
+    <ol style="margin-top: 20px; padding-left: 20px; color: #555;">
+      {% for record in records %}
+      <li style="margin-bottom: 10px;color: white;">{{ record.date }}</li>
+      {% endfor %}
+    </ol>
+  </div>
+</div>
+{% endblock %}
