@@ -42,7 +42,9 @@ def edit_member(request, member_id):
 
 def delete_member(request, member_id):
     member=Registers.objects.get(id=member_id)
-    member.delete()
+    user = member.user 
+    member.delete() 
+    user.delete() 
     return redirect('members_list')
 
 def approve_member(request, member_id):
@@ -97,7 +99,9 @@ def edit_trainer(request, trainer_id):
 
 def delete_trainer(request, trainer_id):
     trainer=Trainers.objects.get(id=trainer_id)
-    trainer.delete()
+    user = trainer.user 
+    trainer.delete() 
+    user.delete() 
     return redirect('trainers_list')     
 
 
