@@ -14,5 +14,5 @@ urlpatterns = [
     path('total_active_members/', views.total_active_members, name='total_active_members'),
     path('total_expired_memberships/', views.total_expired_memberships, name='total_expired_memberships'),
     path('members_about_to_expire/', views.members_about_to_expire, name='members_about_to_expire'),
-
+    path('delete_plan/<int:plan_id>/', views.delete_plan, name='delete_plan'),
 ]

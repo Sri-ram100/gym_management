@@ -23,6 +23,14 @@ def plan_list(request):
     return render(request, 'memberships/plan_list.html', {'plans': plans})
 
 @login_required
+def delete_plan(request, plan_id):
+    plan = Plan.objects.filter(id=plan_id)
+    if request.method == 'POST':
+        plan.delete()
+        return redirect('plan_list')
+    return render(request, 'memberships/plan_list.html', {'plans': Plan.objects.all()})
+
+@login_required
 def create_payment(request):
     if request.method == 'POST':
         form = PaymentForm(request.POST)

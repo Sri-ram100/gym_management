@@ -20,3 +20,22 @@ def add_measurement(request):
 def measurement_list(request):
     measurements = Measurements.objects.filter(user=request.user)
     return render(request, 'measurements/measurement_list.html', {'measurements': measurements})
+
+
+def delete_measurement(request, measurement_id):
+    measurement = Measurements.objects.filter(id=measurement_id)
+    measurement.delete()
+    return redirect('measurement_list') 
+
+@login_required
+def edit_measurement(request, measurement_id):
+    measurement = Measurements.objects.filter(id=measurement_id)
+
+    if request.method == 'POST':
+        form = MeasurementsForm(request.POST, instance=measurement)
+        if form.is_valid():
+            form.save()
+            return redirect('measurement_list')
+    else:
+        form = MeasurementsForm(instance=measurement)
+    return render(request, 'measurements/edit_measurement.html', {'form': form})
