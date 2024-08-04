@@ -51,12 +51,12 @@
             <td class="text-nowrap white-text">{{member.join_date}}</td>
             <td class="text-nowrap white-text">
               <a href="{% url 'approve_member' member.id %}">
-                <button {% if member.user.is_active %}disabled{% endif %} class="white-text half-opacity-bg">
+                <button {% if member.user.is_active %}disabled{% endif %} class="white-text btn btn-info half-opacity-bg">
                   {% if member.user.is_active %} Approved {% else %} Approve {% endif %}
                 </button>
               </a>
               <a href="{% url 'disapprove_member' member.id %}">
-                <button {% if not member.user.is_active %}disabled{% endif %} class="white-text half-opacity-bg">
+                <button {% if not member.user.is_active %}disabled{% endif %} class="white-text btn btn-secondary half-opacity-bg">
                   {% if member.user.is_active %} Disapprove {% else %} Disapproved {% endif %}
                 </button>
               </a>

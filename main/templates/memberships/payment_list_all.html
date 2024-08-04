@@ -12,21 +12,85 @@
                 <th>Plan Start Date</th>
                 <th>Plan Expiry Date</th>
                 <th>Purchased Date</th>
+                <th>Invoice</th>
             </tr>
         </thead>
         <tbody>
             {% for payment in payments %}
-            <tr class="text-white bg-dark">
+            <tr class="text-white bg-dark tr-row">
                 <td>{{ payment.user.username }}</td>
                 <td>{{ payment.plan.name }}</td>
                 <td>{{ payment.amount }} Rs</td>
                 <td>{{ payment.start_date }}</td>
                 <td>{{ payment.expiry_date }}</td>
                 <td>{{ payment.payment_date }}</td>
+                <td>
+                    <button onclick="printInvoice('{{ payment.id }}')" class="btn btn-primary btn-sm">Print</button>
+                </td>
+            </tr>
+            <tr class="print-section" id="print-{{ payment.id }}" style="display: none;">
+                <td colspan="7">
+                    <div>
+                        <h2>Gym Membership Invoice</h2>
+                        <h4>Name : {{ payment.user.username }}</h4>
+                        <p><strong>Plan Name:</strong> {{ payment.plan.name }}</p>
+                        <p><strong>Amount:</strong> {{ payment.amount }} Rs</p>
+                        <p><strong>Start Date:</strong> {{ payment.start_date }}</p>
+                        <p><strong>Expiry Date:</strong> {{ payment.expiry_date }}</p>
+                        <p><strong>Purchased Date:</strong> {{ payment.payment_date }}</p>
+                    </div>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
 </div>
-
+<script>
+    function printInvoice(paymentId) {
+        document.querySelectorAll('.print-section').forEach(function(section) {
+            section.style.display = 'none';
+        });
+    
+        var printSection = document.getElementById('print-' + paymentId);
+        if (printSection) {
+            printSection.style.display = 'table-row';
+        }
+    
+        window.print();
+    
+        setTimeout(function() {
+            if (printSection) {
+                printSection.style.display = 'none';
+            }
+        }, 1000); 
+    }
+    </script>
+<style>
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+    
+        .table, .table * {
+            visibility: visible;
+        }
+    
+        .thead-dark, .table thead, .btn, h1,.tr-row {
+            display: none;
+        }
+    
+        .table {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+        }
+    
+        .print-section {
+            display: none;
+        }
+    }
+    </style>
+    
+        
 {% endblock %}

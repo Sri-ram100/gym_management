@@ -51,7 +51,7 @@ def select_plan(request):
             if not payment.expiry_date:
                 payment.expiry_date = payment.start_date + relativedelta(months=payment.plan.duration)
             payment.save()
-            return redirect('home')
+            return redirect('payment_list_all')
     else:
         form = PlanSelectionForm()
     return render(request, 'memberships/select_plan.html', {'form': form})
@@ -86,3 +86,15 @@ def members_about_to_expire(request):
     end_date = today + timedelta(days=7)
     expiring_payments = Payment.objects.filter(expiry_date__range=(today, end_date))
     return render(request, 'memberships/members_about_to_expire.html', {'expiring_payments': expiring_payments})
+
+
+def edit_plan(request, plan_id):
+    plan = Plan.objects.get(id=plan_id)
+    if request.method == 'POST':
+        form = PlanForm(request.POST, instance=plan)
+        if form.is_valid():
+            form.save()
+            return redirect('plan_list') 
+    else:
+        form = PlanForm(instance=plan)
+    return render(request, 'memberships/edit_plan.html', {'form': form})

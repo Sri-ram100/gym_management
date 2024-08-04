@@ -49,14 +49,14 @@
             <td class="text-nowrap white-text">{{trainer.hire_date}}</td>
             <td class="text-nowrap">
               <a href="{% url 'approve_trainer' trainer.id %}">
-                <button {% if trainer.user.is_active %}disabled{% endif %} class="white-text  half-opacity-bg">
+                <button {% if trainer.user.is_active %}disabled{% endif %} class="white-text btn btn-info half-opacity-bg">
                   {% if trainer.user.is_active %} Approved 
                   {% else %} Approve
                   {% endif %}
                 </button>
               </a>
               <a href="{% url 'disapprove_trainer' trainer.id %}">
-                <button {% if not trainer.user.is_active %}disabled{% endif %} class="white-text  half-opacity-bg">
+                <button {% if not trainer.user.is_active %}disabled{% endif %} class="white-text btn btn-secondary half-opacity-bg">
                   {% if trainer.user.is_active %} Disapprove {% else %} Disapproved {% endif %}
                 </button>
               </a>

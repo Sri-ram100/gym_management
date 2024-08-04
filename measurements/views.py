@@ -29,7 +29,7 @@ def delete_measurement(request, measurement_id):
 
 @login_required
 def edit_measurement(request, measurement_id):
-    measurement = Measurements.objects.filter(id=measurement_id)
+    measurement = Measurements.objects.get(id=measurement_id) 
 
     if request.method == 'POST':
         form = MeasurementsForm(request.POST, instance=measurement)

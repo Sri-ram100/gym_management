@@ -32,3 +32,11 @@ def ingredient_create(request):
     else:
         form = IngredientForm()
     return render(request, 'diet/ingredient_form.html', {'form': form})
+
+@login_required
+def ingredient_delete(request, ingredient_id):
+    ingredient = Ingredient.objects.filter(id=ingredient_id)
+    if request.method == "POST":
+        ingredient.delete()
+        return redirect('ingredient_list')
+    return render(request, 'diet/ingredient_list.html', {'ingredients': Ingredient.objects.all()})
