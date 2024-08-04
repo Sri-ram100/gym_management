@@ -9,5 +9,6 @@ urlpatterns = [
     path('',include('workout_setup.urls')),
     path('',include('attendance.urls')),
     path('',include('memberships.urls')),
+    path('',include('diet_setup.urls')),
 ]
 

@@ -6,7 +6,7 @@
     <form method="post" style="display: flex; flex-direction: column; gap: 15px;">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" style="align-self: center; padding: 10px 20px; border: none; border-radius: 5px; background-color:white; font-size: 16px; cursor: pointer;">
+        <button type="submit" class="text-white" style="align-self: center; padding: 10px 20px; border: none; border-radius: 5px; background-color:rgb(25, 181, 8); font-size: 16px; cursor: pointer;">
             Select Membership Plan
         </button>
     </form>

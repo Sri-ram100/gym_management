@@ -54,6 +54,11 @@ def payment_list(request):
     return render(request, 'memberships/payment_list.html', {'payments': payments})
 
 @login_required
+def payment_list_all(request):
+    payments = Payment.objects.filter()
+    return render(request, 'memberships/payment_list_all.html', {'payments': payments})
+
+@login_required
 def total_active_members(request):
     today = timezone.now().date()
     active_members_count = Payment.objects.filter(expiry_date__gte=today).count()
@@ -64,3 +69,12 @@ def total_expired_memberships(request):
     today = timezone.now().date()
     expired_memberships_count = Payment.objects.filter(expiry_date__lt=today).count()
     return HttpResponse(f"<script>alert('Total Expired Memberships: {expired_memberships_count}');window.location.replace('/home');</script>")
+
+from datetime import timedelta
+
+@login_required
+def members_about_to_expire(request):
+    today = timezone.now().date()
+    end_date = today + timedelta(days=7)
+    expiring_payments = Payment.objects.filter(expiry_date__range=(today, end_date))
+    return render(request, 'memberships/members_about_to_expire.html', {'expiring_payments': expiring_payments})

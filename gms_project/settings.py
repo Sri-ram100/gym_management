@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'workout_setup',
     'attendance',
     'memberships',
+    'diet_setup',
 ]
 
 MIDDLEWARE = [

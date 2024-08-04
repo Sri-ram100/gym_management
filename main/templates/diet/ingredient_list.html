@@ -1,0 +1,10 @@
+{% extends "base.html" %} {% block content %}
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Ingredients</h1>
+  <ul class="list-group">
+    {% for ingredient in ingredients %}
+    <li class="list-group-item">{{ ingredient.name }}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

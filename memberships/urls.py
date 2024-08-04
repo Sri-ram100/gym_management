@@ -10,7 +10,9 @@ urlpatterns = [
     path('payment_list/', views.payment_list, name='payment_list'),
     path('select_plan/', views.select_plan, name='select_plan'),
     path('payment_list/', views.payment_list, name='payment_list'),
+    path('payment_list_all/', views.payment_list_all, name='payment_list_all'),
     path('total_active_members/', views.total_active_members, name='total_active_members'),
     path('total_expired_memberships/', views.total_expired_memberships, name='total_expired_memberships'),
+    path('members_about_to_expire/', views.members_about_to_expire, name='members_about_to_expire'),
 
 ]

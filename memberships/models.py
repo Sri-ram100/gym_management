@@ -9,7 +9,7 @@ class Plan(models.Model):
     duration = models.IntegerField(help_text="Duration in months")
 
     def __str__(self):
-        return self.name
+        return f'{self.name} - {self.price} Rs - {self.duration} Months'
 
 class Payment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -10,7 +10,7 @@ class PlanForm(forms.ModelForm):
             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Plan Name'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': 'Plan Description'}),
             'price': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Price'}),
-            'duration': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Duration in Days'}),
+            'duration': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Duration in Months'}),
         }
 
 class PaymentForm(forms.ModelForm):

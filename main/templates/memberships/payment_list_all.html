@@ -1,0 +1,32 @@
+{% extends "base.html" %} 
+{% block content %}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4 text-white">All Payments</h1>
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Member Name</th>
+                <th>Plan Name</th>
+                <th>Plan Price</th>
+                <th>Plan Start Date</th>
+                <th>Plan Expiry Date</th>
+                <th>Purchased Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for payment in payments %}
+            <tr class="text-white bg-dark">
+                <td>{{ payment.user.username }}</td>
+                <td>{{ payment.plan.name }}</td>
+                <td>{{ payment.amount }} Rs</td>
+                <td>{{ payment.start_date }}</td>
+                <td>{{ payment.expiry_date }}</td>
+                <td>{{ payment.payment_date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

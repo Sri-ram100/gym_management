@@ -1,7 +1,9 @@
-{% extends "base.html" %} {% block content %}
-<div class="container">
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container bg-dark text-white rounded ">
   <div class="row justify-content-center">
-    <div class="col-12 text-center mb-3">
+    <div class="col-12 text-center mt-5 mb-3">
       <button
         type="button"
         class="btn btn-warning"
@@ -13,7 +15,7 @@
   </div>
   <div class="row justify-content-center">
     <div class="col-md-8">
-      <h2>Edit Trainer</h2>
+      <h2 class="text-center">Edit Trainer Form</h2>
       <form method="post">
         {% csrf_token %} {{ form.as_p }}
         <button type="submit" class="btn btn-primary">Update</button>
