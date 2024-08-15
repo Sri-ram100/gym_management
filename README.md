@@ -38,7 +38,7 @@ Visit the live demo: [Gym Management System](https://arunimads.pythonanywhere.co
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/gym-management-system.git
+   git clone https://github.com/Arunimads/gym-management-system.git
    cd gym-management-system
 2. **Create and activate a virtual environment:**
     ```bash
@@ -57,7 +57,7 @@ Visit the live demo: [Gym Management System](https://arunimads.pythonanywhere.co
    ```bash
    python manage.py runserver
 7. **Access the application:**
-   Open your web browser and go to `http://127.0.0.1:8000/`
+   Open [http://localhost:8000](http://localhost:8000) to view it in your browser.
 
 
 
